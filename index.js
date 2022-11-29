@@ -13,6 +13,7 @@ const validateConnection = (req, res, next) => {
   console.log(mongoose.connection.readyState)
   if (mongoose.connection.readyState === 2 || mongoose.connection.readyState === 0 || mongoose.connection.readyState === 3) {
     res.send('cannot establish connection to database').status(500);
+    next()
   } else {
     console.log('redirecting')
     next()
