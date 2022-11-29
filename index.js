@@ -68,6 +68,19 @@ mongoose.connection.on('disconnected', () => {
   console.log(mongoose.connection.readyState); //logs 0
 });
 
-mongoose.connect('mongodb+srv://johan-admin:1234@cluster0.6jsq53g.mongodb.net/?retryWrites=true&w=majority', {
-  useNewUrlParser: true // Boilerplate for Mongoose 5.x
-}).catch(err => console.log('error happened'));
+const connect = async () => {
+  try {
+      const db = await mongoose.connect('mongodb+srv://johan-admin:1234@cluster0.6jsq53g.mongodb.net/?retryWrites=true&w=majority', {
+          useUnifiedTopology: true,
+          useNewUrlParser: true,
+      });
+      
+      const { name, host } = db.connection;
+      console.log(`Connected to ${name} en ${host}`);
+  } catch(error) {
+      console.log('Error occured', error);
+  }
+};
+
+connect()
+
