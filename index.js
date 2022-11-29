@@ -36,7 +36,7 @@ app.use('*', auth);
 app.use('/products', productRoute);
 app.use('/users', userRoute);
 app.use('/sales', salesRoute);
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("server is running on port 3000");
 })
 
